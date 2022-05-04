@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import com.rudimentum.internshiptestapp.adapter.CustomRecyclerAdapter
+import com.rudimentum.internshiptestapp.model.HomeFeed
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import org.json.JSONObject
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        myRecyclerView.layoutManager = LinearLayoutManager(this)
 
         fetchJSON()
     }
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         (0..30).forEach { i -> data.add("$i element") }
         return data
     }
-    fun fetchJSON() {
+
+    private fun fetchJSON() {
         val url = "https://rickandmortyapi.com/api/character"
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
@@ -37,23 +39,17 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val body = response?.body?.string()
+                val body = response.body?.string()
                 println(body)
 
                 val gson = GsonBuilder().create()
-                val homeFeed = gson.fromJson(body, HomeFeed::class.java)
+                val homeFeed: HomeFeed = gson.fromJson(body, HomeFeed::class.java)
 
                 runOnUiThread {
-                    recyclerView.adapter = CustomRecyclerAdapter(homeFeed)
+                    myRecyclerView.adapter = CustomRecyclerAdapter(homeFeed)
                 }
             }
         })
     }
 
 }
-
-class HomeFeed(val characters: List<Character>)
-
-class Character(val id: Int,
-                val name: String,
-                val status: String)

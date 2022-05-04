@@ -12,7 +12,8 @@ class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
 .Adapter<CustomRecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            }
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -21,13 +22,16 @@ class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val character = homeFeed.characters.get(position)
+        val character = homeFeed.characters[position]
         holder.itemView.textViewLarge.text = character.name
         holder.itemView.textViewSmall.text = character.status
 
     }
 
     override fun getItemCount(): Int {
+        homeFeed.characters?.let {
+            return it.size
+        }
         return 0
     }
 }
