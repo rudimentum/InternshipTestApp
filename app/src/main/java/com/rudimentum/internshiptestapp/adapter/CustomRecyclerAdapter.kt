@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.rudimentum.internshiptestapp.HomeFeed
 import com.rudimentum.internshiptestapp.R
+import com.rudimentum.internshiptestapp.model.HomeFeed
 import kotlinx.android.synthetic.main.recyclerview_item.view.*
 
 class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
@@ -22,14 +22,14 @@ class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val character = homeFeed.characters[position]
+        val character = homeFeed.results[position]
         holder.itemView.textViewLarge.text = character.name
         holder.itemView.textViewSmall.text = character.status
 
     }
 
     override fun getItemCount(): Int {
-        homeFeed.characters?.let {
+        homeFeed.results?.let {
             return it.size
         }
         return 0
