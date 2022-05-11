@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rudimentum.internshiptestapp.R
 import com.rudimentum.internshiptestapp.model.HomeFeed
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclerview_item.view.*
 
 class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
 .Adapter<CustomRecyclerAdapter.MyViewHolder>() {
 
+    private val picasso = Picasso.get()
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
@@ -23,8 +25,10 @@ class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val character = homeFeed.results[position]
-        holder.itemView.textViewLarge.text = character.name
-        holder.itemView.textViewSmall.text = character.status
+        holder.itemView.characterName.text = character.name
+        holder.itemView.characterStatus.text = character.status
+        holder.itemView.characterGender.text = character.gender
+        picasso.load(character.image).into(holder.itemView.characterAvatar)
 
     }
 
