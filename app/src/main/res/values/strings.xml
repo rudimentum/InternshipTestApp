@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">InternshipTestApp</string>
-    <string name="photo">photo</string>
+    <string name="character_avatar">avatar</string>
 </resources>
