@@ -9,6 +9,6 @@ class Character(val id: Int,
                 val origin: Location,
                 val location: Location,
                 val image: String,
-                val episodes: List<String>,
+                val episode: List<String>,
                 val url: String,
                 val created: String)

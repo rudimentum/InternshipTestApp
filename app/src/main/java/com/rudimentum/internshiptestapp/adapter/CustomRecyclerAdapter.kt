@@ -1,9 +1,11 @@
 package com.rudimentum.internshiptestapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.rudimentum.internshiptestapp.FullScreen
 import com.rudimentum.internshiptestapp.R
 import com.rudimentum.internshiptestapp.model.HomeFeed
 import com.squareup.picasso.Picasso
@@ -30,6 +32,19 @@ class CustomRecyclerAdapter(private val homeFeed: HomeFeed) : RecyclerView
         holder.itemView.characterGender.text = character.gender
         picasso.load(character.image).into(holder.itemView.characterAvatar)
 
+        // Add click listener on item of recycler view
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, FullScreen::class.java)
+
+            intent.putExtra("name", character.name)
+            intent.putExtra("status", character.status)
+            intent.putExtra("gender", character.gender)
+            intent.putExtra("image", character.image)
+            intent.putExtra("location", character.location.name)
+            intent.putExtra("episode", character.episode.size)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
