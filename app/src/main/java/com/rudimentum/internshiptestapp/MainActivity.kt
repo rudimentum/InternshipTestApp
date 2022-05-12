@@ -23,12 +23,6 @@ class MainActivity : AppCompatActivity() {
         fetchJSON()
     }
 
-    private fun fillList(): List<String> {
-        val data = mutableListOf<String>()
-        (0..30).forEach { i -> data.add("$i element") }
-        return data
-    }
-
     private fun fetchJSON() {
         val url = "https://rickandmortyapi.com/api/character"
         val client = OkHttpClient()
