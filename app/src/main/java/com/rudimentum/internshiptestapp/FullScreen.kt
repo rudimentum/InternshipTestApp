@@ -16,6 +16,6 @@ class FullScreen : AppCompatActivity() {
         fullStatus.text = intent.getStringExtra("status")
         fullGender.text = intent.getStringExtra("gender")
         fullLocation.text = intent.getStringExtra("location")
-        fullEpisodes.text = intent.getStringExtra("episode")
+        fullEpisodes.text = intent.getIntExtra("episode", 0).toString()
     }
 }
