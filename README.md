@@ -8,4 +8,5 @@ When clicking on a character, a second page will be displayed and you will be ab
 ### Used API:
 API used to develop the app is [Rick and Morty API](https://rickandmortyapi.com) 💻.
 
-#### Screen Shots
+### Screen Shots:
+<img src="./screenshots/list.png" width="200"> <img src="./screenshots/item.png" width="200">
